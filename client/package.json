@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+    "dev": "export NODE_ENV=development && node ./node_modules/.bin/webpack-dev-server --inline --hot",
+    "start": "export NODE_ENV=production && node ./node_modules/.bin/webpack-dev-server"
   },
   "dependencies": {
     "axios": "^0.13.1",
@@ -34,6 +35,7 @@
     "eslint-plugin-react": "^6.6.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "node-sass": "^3.4.2",
+    "react-hot-loader": "^3.0.0-beta.6",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.14",

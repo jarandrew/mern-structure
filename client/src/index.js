@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { AppContainer } from 'react-hot-loader';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
@@ -32,6 +33,34 @@ if (token) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory} routes={routes} onUpdate={logPageView} />
+    <AppContainer>
+      <Router history={browserHistory} routes={routes} onUpdate={logPageView} />
+    </AppContainer>
   </Provider>,
   document.querySelector('.wrapper'));
+
+if (module.hot) {
+  module.hot.accept('./routes', () => {
+    const newRoutes = require('./routes').default;
+    ReactDOM.render(
+        <AppContainer>
+      <Provider store={store}>
+          <Router history={browserHistory} routes={newRoutes} onUpdate={logPageView} />
+      </Provider>
+        </AppContainer>,
+      document.querySelector('.wrapper'));
+  });
+
+  module.hot.accept('./reducers/index', () => {
+    let newReducers = require('./reducers/index');
+    store.replaceReducer(newReducers);
+    ReactDOM.render(
+      <Provider store={store}>
+        <AppContainer>
+          <Router history={browserHistory} routes={routes} onUpdate={logPageView} />
+        </AppContainer>
+      </Provider>,
+      document.querySelector('.wrapper'));
+  });
+}
+

@@ -2,9 +2,14 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
 const config = {
   context: __dirname,
-  entry: './src/index.js',
+  entry: [
+    'react-hot-loader/patch',
+    './src/index.js',
+  ],
   output: {
     path: __dirname,
     filename: 'bundle.js',
@@ -23,9 +28,11 @@ const config = {
   devServer: {
     historyApiFallback: true,
     contentBase: './',
+    hot: true,
+    port: NODE_ENV=='production'? 8000: 8080,
   },
   plugins: [
-    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
+    new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(NODE_ENV) }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({

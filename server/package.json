@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -e js --exec \"babel-node index.js\""
+    "dev": "nodemon -e js --exec \"babel-node index.js\"",
+    "start": "export NODE_ENV=production && nodemon -e js --exec \"babel-node index.js\""
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
