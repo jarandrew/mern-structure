@@ -10,7 +10,7 @@ class HeaderTemplate extends Component {
           <Link to="/">Home</Link>
         </li>,
         <li key={`${2}header`}>
-          <Link to="dashboard">Profile</Link>
+          <Link to="profile">Profile</Link>
         </li>,
         <li key={`${3}header`}>
           <Link to="logout">Logout</Link>

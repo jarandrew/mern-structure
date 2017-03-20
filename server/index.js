@@ -28,6 +28,7 @@ app.use((req, res, next) => {
 const MongoStore = require("connect-mongo")(session);
 
 // Database Setup
+mongoose.Promise = global.Promise;
 mongoose.connect(config.database, (mongooseErr) => {
   if(mongooseErr) {
     console.error(mongooseErr);

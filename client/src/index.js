@@ -7,17 +7,17 @@ import reduxThunk from 'redux-thunk';
 import cookie from 'react-cookie';
 import routes from './routes';
 import reducers from './reducers/index';
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 import { AUTH_USER } from './actions/types';
 
 // Import stylesheets
 import './public/stylesheets/base.scss';
 
 // Initialize Google Analytics
-ReactGA.initialize('UA-000000-01');
+// ReactGA.initialize('UA-000000-01');
 
 function logPageView() {
-  ReactGA.pageview(window.location.pathname);
+  // ReactGA.pageview(window.location.pathname);
 }
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);

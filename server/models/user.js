@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
 import { ROLE_MEMBER, ROLE_CLIENT, ROLE_OWNER, ROLE_ADMIN } from '../constants';
 
+mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
 
 //= ===============================
